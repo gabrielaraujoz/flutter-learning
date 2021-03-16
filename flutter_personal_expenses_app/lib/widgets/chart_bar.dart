@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 class ChartBar extends StatelessWidget {
   final String label;
@@ -14,6 +15,7 @@ class ChartBar extends StatelessWidget {
         return Column(
           children: [
             Container(
+              padding: EdgeInsets.symmetric(horizontal: 1),
               height: constraints.maxHeight * 0.15,
               child: FittedBox(
                 child: Text('R\$ ${spendingAmount.toStringAsFixed(0)}'),
