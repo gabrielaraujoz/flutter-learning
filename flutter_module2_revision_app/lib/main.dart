@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
-import 'package:flutter_module2_revision_app/textControl.dart';
-import 'package:flutter_module2_revision_app/textWidget.dart';
+import 'package:flutter_module2_revision_app/text_control.dart';
+import 'package:flutter_module2_revision_app/text_widget.dart';
 
 void main() {
   runApp(MyApp());
