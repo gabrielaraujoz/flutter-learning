@@ -4,6 +4,10 @@ import 'package:flutter_deli_meals_app/widgets/meal_detail_list_item.dart';
 
 class MealDetailScreen extends StatelessWidget {
   static const routeName = '/meal-detail';
+  final Function toggleFavorite;
+  final Function isMealFavorite;
+
+  MealDetailScreen(this.toggleFavorite, this.isMealFavorite);
 
   @override
   Widget build(BuildContext context) {
@@ -12,6 +16,14 @@ class MealDetailScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('${selectedMeal.title}'),
+        actions: [
+          IconButton(
+            icon: Icon(isMealFavorite(mealId)
+                ? Icons.favorite
+                : Icons.favorite_border),
+            onPressed: () => toggleFavorite(mealId),
+          )
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -32,10 +44,9 @@ class MealDetailScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.delete),
-        onPressed: () {
-          Navigator.of(context).pop(mealId);
-        },
+        child: Icon(
+            isMealFavorite(mealId) ? Icons.favorite : Icons.favorite_border),
+        onPressed: () => toggleFavorite(mealId),
       ),
     );
   }
