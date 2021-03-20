@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_deli_meals_app/presentation/category_meals_screen.dart';
+import 'package:flutter_deli_meals_app/presentation/filters_screen.dart';
 import 'package:flutter_deli_meals_app/presentation/meal_detail_screen.dart';
 import 'package:flutter_deli_meals_app/presentation/tabs_screen.dart';
 
@@ -36,9 +37,10 @@ class MyApp extends StatelessWidget {
               )),
       // home: CategoriesScreen(),
       routes: {
-        '/': (ctx) => TabsScreen(),
+        TabsScreen.routeName: (ctx) => TabsScreen(),
         CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen(),
         MealDetailScreen.routeName: (ctx) => MealDetailScreen(),
+        FiltersScreen.routeName: (ctx) => FiltersScreen(),
       },
       // returns to a pre-established Screen and allows executing code based
       // on if conditions
