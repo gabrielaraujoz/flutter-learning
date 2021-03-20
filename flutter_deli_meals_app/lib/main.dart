@@ -38,6 +38,20 @@ class MyApp extends StatelessWidget {
         CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen(),
         MealDetailScreen.routeName: (ctx) => MealDetailScreen(),
       },
+      // returns to a pre-established Screen and allows executing code based
+      // on if conditions
+
+      // onGenerateRoute: (settings) {
+      //   return MaterialPageRoute(builder: (ctx) => CategoriesScreen());
+      // },
+
+      // this comes to action when flutter fails to generate a route, prevents
+      // crashes guaranteeing that you always show something on the screen
+      onUnknownRoute: (settings) {
+        return MaterialPageRoute(
+          builder: (ctx) => CategoriesScreen(),
+        );
+      },
     );
   }
 }
