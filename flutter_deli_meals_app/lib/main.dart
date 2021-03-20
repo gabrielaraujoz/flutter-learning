@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_deli_meals_app/presentation/category_meals_screen.dart';
 import 'package:flutter_deli_meals_app/presentation/meal_detail_screen.dart';
+import 'package:flutter_deli_meals_app/presentation/tabs_screen.dart';
 
 import 'presentation/categories_screen.dart';
 
@@ -33,8 +34,9 @@ class MyApp extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               )),
-      home: CategoriesScreen(),
+      // home: CategoriesScreen(),
       routes: {
+        '/': (ctx) => TabsScreen(),
         CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen(),
         MealDetailScreen.routeName: (ctx) => MealDetailScreen(),
       },
