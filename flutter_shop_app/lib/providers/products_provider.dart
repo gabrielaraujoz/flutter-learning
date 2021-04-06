@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../models/product_model.dart';
+import 'product_model_provider.dart';
 
 class ProductsProvider with ChangeNotifier {
-  List<ProductModel> _items = [
-    ProductModel(
+  List<ProductModelProvider> _items = [
+    ProductModelProvider(
       id: 'p1',
       title: 'Red Shirt',
       description: 'A red shirt - it is pretty red!',
@@ -12,7 +12,7 @@ class ProductsProvider with ChangeNotifier {
       imageUrl:
       'https://cdn.pixabay.com/photo/2016/10/02/22/17/red-t-shirt-1710578_1280.jpg',
     ),
-    ProductModel(
+    ProductModelProvider(
       id: 'p2',
       title: 'Trousers',
       description: 'A nice pair of trousers.',
@@ -20,7 +20,7 @@ class ProductsProvider with ChangeNotifier {
       imageUrl:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Trousers%2C_dress_%28AM_1960.022-8%29.jpg/512px-Trousers%2C_dress_%28AM_1960.022-8%29.jpg',
     ),
-    ProductModel(
+    ProductModelProvider(
       id: 'p3',
       title: 'Yellow Scarf',
       description: 'Warm and cozy - exactly what you need for the winter.',
@@ -28,7 +28,7 @@ class ProductsProvider with ChangeNotifier {
       imageUrl:
       'https://live.staticflickr.com/4043/4438260868_cc79b3369d_z.jpg',
     ),
-    ProductModel(
+    ProductModelProvider(
       id: 'p4',
       title: 'A Pan',
       description: 'Prepare any meal you want.',
@@ -38,7 +38,7 @@ class ProductsProvider with ChangeNotifier {
     ),
   ];
 
-  List<ProductModel> get items {
+  List<ProductModelProvider> get items {
     return [..._items];
   }
 
@@ -47,7 +47,7 @@ class ProductsProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  ProductModel findById(String id) {
+  ProductModelProvider findById(String id) {
     return _items.firstWhere((product) => product.id == id);
   }
 }

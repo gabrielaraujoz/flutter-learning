@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shop_app/providers/products_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_shop_app/models/product_model.dart';
 import 'product_item.dart';
 
 class ProductsGrid extends StatelessWidget {
@@ -19,11 +18,12 @@ class ProductsGrid extends StatelessWidget {
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
       ),
-      itemBuilder: (ctx, i) => ProductItem(
-        products[i].id,
-        products[i].title,
-        products[i].price,
-        products[i].imageUrl,
+      itemBuilder: (ctx, i) => ChangeNotifierProvider.value(
+        // not using builder because of scalability - value links the provider
+        // to the values and allows for expanding without bugs when items go beyond the screen
+        // builder: (ctx) => products[i],
+        value: products[i],
+        child: ProductItem(),
       ),
     );
   }

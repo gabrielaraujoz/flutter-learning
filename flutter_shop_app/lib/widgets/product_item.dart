@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shop_app/presentation/product_detail_screen.dart';
+import 'package:flutter_shop_app/providers/product_model_provider.dart';
+import 'package:provider/provider.dart';
 
 class ProductItem extends StatelessWidget {
-  final String id;
-  final String title;
-  final double price;
-  final String imageUrl;
-
-  ProductItem(this.id, this.title, this.price, this.imageUrl);
 
   @override
   Widget build(BuildContext context) {
+    final product = Provider.of<ProductModelProvider>(context, listen: false);
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
       child: GridTile(
@@ -18,31 +15,35 @@ class ProductItem extends StatelessWidget {
           onTap: () {
             Navigator.of(context).pushNamed(
               ProductDetailScreen.routeName,
-              arguments: id,
+              arguments: product.id,
             );
           },
           child: Image.network(
-            imageUrl,
+            product.imageUrl,
             fit: BoxFit.cover,
           ),
         ),
         footer: GridTileBar(
           backgroundColor: Colors.black87,
-          leading: IconButton(
-            icon: Icon(Icons.favorite),
-            onPressed: () {},
-            color: Theme.of(context).accentColor,
+          leading: Consumer<ProductModelProvider>(
+            builder: (ctx, product, child) =>  IconButton(
+              icon: Icon(product.isFavorite ? Icons.favorite : Icons.favorite_border),
+              onPressed: () {
+                product.toggleFavoriteStatus();
+              },
+              color: Theme.of(context).accentColor,
+            ),
           ),
           title: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             Padding(
               padding: const EdgeInsets.only(bottom: 2.0),
               child: Text(
-                title,
+                product.title,
                 textAlign: TextAlign.center,
               ),
             ),
             Text(
-              '\$${price.toStringAsFixed(2)}',
+              '\$${product.price.toStringAsFixed(2)}',
               textAlign: TextAlign.center,
             ),
           ]),
