@@ -15,43 +15,9 @@ class CartScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Card(
-            margin: const EdgeInsets.all(15),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Total:',
-                    style: TextStyle(
-                      fontSize: 20,
-                    ),
-                  ),
-                  Spacer(),
-                  Chip(
-                    label: Text(
-                      '\$ ${cart.totalAmount.toStringAsFixed(2)}',
-                      style: TextStyle(
-                        color:
-                            Theme.of(context).primaryTextTheme.headline6.color,
-                      ),
-                    ),
-                    backgroundColor: Theme.of(context).primaryColor,
-                  ),
-                  FlatButton(
-                    onPressed: () {},
-                    child: Text(
-                      'ORDER NOW',
-                    ),
-                    textColor: Theme.of(context).primaryColor,
-                  )
-                ],
-              ),
-            ),
-          ),
+
           SizedBox(
-            height: 10,
+            height: 4,
           ),
           Expanded(
             child: GridView.builder(
@@ -66,10 +32,45 @@ class CartScreen extends StatelessWidget {
               gridDelegate:
               SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 1,
-                childAspectRatio: 3 / 2,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
+                childAspectRatio: 4 / 2,
+                mainAxisSpacing: 8,
               )
+            ),
+          ),
+          Card(
+            // margin: const EdgeInsets.all(10),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Total:',
+                    style: TextStyle(
+                      fontSize: 20,
+                    ),
+                  ),
+                  SizedBox(width: 10,),
+                  Chip(
+                    label: Text(
+                      '\$ ${cart.totalAmount.toStringAsFixed(2)}',
+                      style: TextStyle(
+                        color:
+                        Theme.of(context).primaryTextTheme.headline6.color,
+                      ),
+                    ),
+                    backgroundColor: Theme.of(context).primaryColor,
+                  ),
+                  Spacer(),
+                  FlatButton(
+                    onPressed: () {},
+                    child: Text(
+                      'ORDER NOW',
+                    ),
+                    textColor: Theme.of(context).primaryColor,
+                  )
+                ],
+              ),
             ),
           ),
         ],
