@@ -1,6 +1,9 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_shop_app/presentation/cart_screen.dart';
+import 'package:flutter_shop_app/providers/cart_provider.dart';
+import 'package:flutter_shop_app/widgets/badge.dart';
 import 'package:flutter_shop_app/widgets/products_grid.dart';
+import 'package:provider/provider.dart';
 
 enum FilterOptions {
   Favorites,
@@ -14,6 +17,7 @@ class ProductsOverviewScreen extends StatefulWidget {
 
 class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
   var _showFavoritesOnly = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,9 +44,20 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
                 child: Text('Show All'),
                 value: FilterOptions.All,
               ),
-
             ],
           ),
+          Consumer<CartProvider>(
+            builder: (_, cart, child) => Badge(
+              child: child,
+              value: cart.totalItems.toString(),
+            ),
+            child: IconButton(
+              icon: Icon(Icons.shopping_cart),
+              onPressed: () {
+                Navigator.of(context).pushNamed(CartScreen.routeName);
+              },
+            ),
+          )
         ],
       ),
       body: ProductsGrid(_showFavoritesOnly),
