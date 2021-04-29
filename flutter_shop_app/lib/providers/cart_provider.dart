@@ -1,26 +1,28 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-class CartItemProvider {
-  final String id;
+class CartItemModelProvider {
+  final String productId;
   final String title;
   final int quantity;
   final double price;
   final String imageUrl;
+  final String cartProductId;
 
-  CartItemProvider({
-    @required this.id,
+  CartItemModelProvider({
+    @required this.productId,
     @required this.title,
     @required this.quantity,
     @required this.price,
     @required this.imageUrl,
+    @required this.cartProductId,
   });
 }
 
 class CartProvider with ChangeNotifier {
-  Map<String, CartItemProvider> _items = {};
+  Map<String, CartItemModelProvider> _items = {};
 
-  Map<String, CartItemProvider> get items {
+  Map<String, CartItemModelProvider> get items {
     return {..._items};
   }
 
@@ -51,8 +53,9 @@ class CartProvider with ChangeNotifier {
     if (_items.containsKey(productId)) {
       _items.update(
         productId,
-        (existingCartItem) => CartItemProvider(
-          id: existingCartItem.id,
+        (existingCartItem) => CartItemModelProvider(
+          cartProductId: existingCartItem.cartProductId,
+          productId: existingCartItem.productId,
           title: existingCartItem.title,
           price: existingCartItem.price,
           quantity: existingCartItem.quantity + 1,
@@ -62,8 +65,9 @@ class CartProvider with ChangeNotifier {
     } else {
       _items.putIfAbsent(
         productId,
-        () => CartItemProvider(
-          id: productId,
+        () => CartItemModelProvider(
+          cartProductId: DateTime.now().toString(),
+          productId: productId,
           title: title,
           price: price,
           quantity: 1,
@@ -71,6 +75,16 @@ class CartProvider with ChangeNotifier {
         ),
       );
     }
+    notifyListeners();
+  }
+
+  void removeItem(String productId) {
+    _items.remove(productId);
+    notifyListeners();
+  }
+
+  void clearCart() {
+    _items = {};
     notifyListeners();
   }
 }
