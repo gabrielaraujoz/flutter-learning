@@ -1,6 +1,7 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
-class ProductModel {
+class ProductModelProvider with ChangeNotifier {
   final String id;
   final String title;
   final String description;
@@ -8,7 +9,7 @@ class ProductModel {
   final String imageUrl;
   bool isFavorite;
 
-  ProductModel({
+  ProductModelProvider({
     @required this.id,
     @required this.title,
     @required this.description,
@@ -16,4 +17,9 @@ class ProductModel {
     @required this.imageUrl,
     this.isFavorite = false,
   });
+
+  void toggleFavoriteStatus() {
+    isFavorite = !isFavorite;
+    notifyListeners();
+  }
 }
