@@ -18,7 +18,7 @@ class CartItem extends StatelessWidget {
       @required this.quantity,
       @required this.title,
       @required this.imageUrl,
-      @required this.cartProductId})
+      this.cartProductId})
       : super(key: key);
 
   @override

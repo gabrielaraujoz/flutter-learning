@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shop_app/providers/cart_provider.dart';
-import 'package:flutter_shop_app/widgets/cart_item.dart';
 
 class OrderItemModelProvider {
   final String id;
